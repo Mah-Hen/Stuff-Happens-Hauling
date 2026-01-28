@@ -1,0 +1,28 @@
+<form id="contact-form" method="POST" action="https://formspree.io/f/mjgwndao">
+    <h2>Contact Us</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="_replyto" required>
+
+    <label> Topic:</label>
+    <select name="topic" id="topic" required>
+        <option value="quote">Get a Quote</option>
+        <option value="general">General Inquiry</option>
+        <option value="billing">Billing</option>
+    </select>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <!-- These get filled by JS -->
+    <input type="hidden" name="_subject" id="subjectField">
+    <input type="hidden" name="_replyto" id="replyToField">
+
+    <!-- Honeypot -->
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+    <button type="submit">Send</button>
+    <p id="form-status" aria-live="polite"></p>
+</form>     
