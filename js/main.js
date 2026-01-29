@@ -19,15 +19,38 @@
         subjectField.value = `${topicToTag(topicElement.value)} SSH Contact Form Submission`;
     }
 
-    // Set initial subject and ubdate on topic change
+    // Clear status message and enable submit button
+    const clearStatus = () => {
+        if (formStatusElement) formStatusElement.textContent = "";
+        const btn = form.querySelectorAll('button[type="submit"]');
+        if (btn) {
+            btn.disabled = false;
+        }
+    }
+
+    // Set initial subject and update on topic change
     updateSubject();
     topicElement.addEventListener('change', updateSubject);
 
-    // Set reply-to on submit
+    // Clear status on input
+    form.addEventListener('input', clearStatus);
+
+    // Clear status on page show (bfcache)
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted && formStatusElement) {
+            clearStatus();
+        }
+    });
+
+        // Set reply-to on submit
     form.addEventListener('submit', () => {
        // replyToField.value = emailElement.value.trim();
         updateSubject();
         if (formStatusElement) formStatusElement.textContent = "Submitting...";
+        const btn = form.querySelectorAll('button[type="submit"]');
+        if (btn) {
+            btn.disabled = true;
+        }
     });
 
 })();
