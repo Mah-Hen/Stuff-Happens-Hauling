@@ -14,48 +14,65 @@
     />
   </head>
   <body>
-    <script src="js/header.js"></script>
-    <main>
-      <form
-        id="contact-form"
-        action="https://formspree.io/f/mjgwndao"
-        method="POST"
-      >
-        <h2>Contact Us</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required />
+    <div id="site-header"></div>
+    <main class="container section">
+      <h1>Contact</h1>
+      <p class="small">Choose a topic and send us a message — we respond quickly.</p>
+      <div class="contact-layout">
+        <section class="card">
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/mjgwndao"
+            method="POST"
+          >
+            <h2>Contact Us</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
 
-        <label> Topic:</label>
-        <select name="topic" id="topic" required>
-          <option value="quote">Get a Quote</option>
-          <option value="general">General Inquiry</option>
-          <option value="billing">Billing</option>
-        </select>
+            <label> Topic:</label>
+            <select name="topic" id="topic" required>
+              <option value="quote">Get a Quote</option>
+              <option value="general">General Inquiry</option>
+              <option value="billing">Billing</option>
+            </select>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
 
-        <!-- These get filled by JS -->
-        <input type="hidden" name="_subject" id="subjectField" />
-        <!-- <input type="hidden" name="_replyto" id="replyToField"> -->
+            <!-- These get filled by JS -->
+            <input type="hidden" name="_subject" id="subjectField" />
+            <!-- <input type="hidden" name="_replyto" id="replyToField"> -->
 
-        <!-- Honeypot -->
-        <input
-          type="text"
-          name="_gotcha"
-          style="display: none"
-          tabindex="-1"
-          autocomplete="off"
-        />
+            <!-- Honeypot -->
+            <input
+              type="text"
+              name="_gotcha"
+              style="display: none"
+              tabindex="-1"
+              autocomplete="off"
+            />
+            <button class="btn btn-primary" type="submit">Send</button>
+            <p id="form-status" aria-live="polite"></p>
+          </form>
+        </section>
+        
+        <aside class="card">
+          <h3> Direct Email </h3>
+          <p><strong>General:</strong> <a href="mailto:info@stufhapenshauling.com?subject=[General]">info@stuffhappenshauling.com</a></p>
+          <p><strong>Billing:</strong> <a href="mailto:billing@stufhapenshauling.com?subject=[Billing]">billing@stuffhappenshauling.com</a></p>
+            
+          <hr class="divider" />
 
-        <button type="submit">Send</button>
-        <p id="form-status" aria-live="polite"></p>
-        <script src="js/main.js"></script>
-        <script src="js/footer.js"></script>
-      </form>
+          <p class="small">Whenever possible, we donate or resell usable itmems so they can find a new home.</p>
+        </aside>
+      </div>
     </main>
+    <div id="site-footer"></div>
+    <script src="js/header.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/footer.js" defer></script>
   </body>
 </html>

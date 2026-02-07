@@ -1,0 +1,546 @@
+/* =========================
+   Design Tokens (Your System)
+   ========================= */
+:root {
+  /* Fonts */
+  --font-display: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Type scale */
+  --h1-size: 48px; --h1-line: 56px; --h1-weight: 700;
+  --h2-size: 36px; --h2-line: 44px; --h2-weight: 600;
+  --h3-size: 24px; --h3-line: 32px; --h3-weight: 600;
+  --body-size: 16px; --body-line: 24px; --body-weight: 400;
+  --small-size: 14px; --small-line: 20px; --small-weight: 400;
+
+  /* Colors */
+  --primary: #1E3A8A;
+  --primary-hover: #1E40AF;
+  --secondary: #F59E0B;
+  --accent: #10B981;
+
+  --neutral-900: #111827;
+  --neutral-600: #6B7280;
+  --neutral-100: #F3F4F6;
+
+  --white: #FFFFFF;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 64px;
+
+  /* Radius / Shadow */
+  --radius-btn: 8px;
+  --radius-card: 12px;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* Layout */
+  --container-max: 1100px;
+}
+
+/* =========================
+   Base / Reset-ish
+   ========================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--body-weight);
+  color: var(--neutral-900);
+  background: var(--neutral-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul { padding-left: 1.2rem; }
+li { margin: var(--spacing-xs) 0; }
+
+:focus-visible {
+  outline: 3px solid rgba(147, 197, 253, 0.9); /* Focus ring #93C5FD-ish */
+  outline-offset: 3px;
+}
+
+/* =========================
+   Typography Helpers
+   ========================= */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0 0 var(--spacing-md);
+  color: var(--neutral-900);
+}
+
+h1 { font-size: var(--h1-size); line-height: var(--h1-line); font-weight: var(--h1-weight); }
+h2 { font-size: var(--h2-size); line-height: var(--h2-line); font-weight: var(--h2-weight); }
+h3 { font-size: var(--h3-size); line-height: var(--h3-line); font-weight: var(--h3-weight); }
+
+p { margin: 0 0 var(--spacing-md); color: var(--neutral-600); }
+
+.small {
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  font-weight: var(--small-weight);
+  color: var(--neutral-600);
+}
+
+/* =========================
+   Layout Primitives
+   ========================= */
+.container {
+  width: min(var(--container-max), calc(100% - 2 * var(--spacing-lg)));
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+/* =========================
+   Header / Nav
+   Your HTML: <header><div class="nav">...</div></header>
+   ========================= */
+header {
+  background: var(--white);
+  border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+header .nav {
+  width: min(var(--container-max), calc(100% - 2 * var(--spacing-lg)));
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--spacing-md) 0;
+  gap: var(--spacing-lg);
+}
+
+#pageHeader {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--neutral-900);
+}
+
+header .nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: 0;
+  margin: 0;
+}
+
+header .nav a {
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  font-weight: 500;
+  color: var(--neutral-900);
+  text-decoration: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 8px;
+}
+
+header .nav a:hover {
+  background: rgba(30, 58, 138, 0.08);
+  text-decoration: none;
+}
+
+/* =========================
+   Buttons (Primary & Secondary)
+   Use: <a class="btn btn-primary">...</a>
+        <button class="btn btn-secondary">...</button>
+   ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  border-radius: var(--radius-btn);
+  padding: 16px 24px;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease, filter 150ms ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.btn-primary:hover { background: var(--primary-hover); text-decoration: none; }
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover { background: #EFF6FF; text-decoration: none; }
+
+/* =========================
+   Card Component
+   ========================= */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+}
+
+.card h3 { margin-bottom: var(--spacing-sm); }
+.card p { margin-bottom: 0; }
+
+/* =========================
+   Homepage hero + sections
+   Your current HTML uses:
+   <main>
+     <span class="main_title">...</span>
+     <span class="main_subtitle"></span>
+   </main>
+   We'll style it without forcing a rewrite.
+   ========================= */
+main {
+  width: min(var(--container-max), calc(100% - 2 * var(--spacing-lg)));
+  margin: 0 auto;
+  padding: var(--spacing-2xl) 0;
+}
+
+.main_title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+  font-weight: var(--h1-weight);
+  color: var(--neutral-900);
+  margin-bottom: var(--spacing-md);
+}
+
+.main_subtitle {
+  display: block;
+  max-width: 60ch;
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  font-weight: var(--body-weight);
+  color: var(--neutral-600);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Optional: if you used the CTA class earlier */
+.cta-button {
+  /* Map your existing class to the new button system */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-btn);
+  padding: 16px 24px;
+  font-weight: 600;
+  background: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+.cta-button:hover { background: var(--primary-hover); text-decoration: none; }
+.cta-button:active { transform: translateY(1px); }
+
+/* =========================
+   Forms (Contact page)
+   ========================= */
+form {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--spacing-lg);
+}
+
+label {
+  display: block;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  color: var(--neutral-900);
+  font-weight: 600;
+  margin: var(--spacing-md) 0 var(--spacing-xs);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(17, 24, 39, 0.16);
+  background: var(--white);
+  font: inherit;
+}
+
+textarea { min-height: 140px; resize: vertical; }
+
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(147, 197, 253, 0.7);
+  outline-offset: 2px;
+  border-color: rgba(30, 58, 138, 0.5);
+}
+
+#form-status {
+  margin-top: var(--spacing-md);
+  color: var(--neutral-600);
+}
+
+/* Make form button match system even if it's plain <button> */
+form button[type="submit"] {
+  margin-top: var(--spacing-lg);
+  width: 100%;
+}
+form button[type="submit"] {
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-btn);
+  padding: 16px 24px;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+}
+form button[type="submit"]:hover { background: var(--primary-hover); }
+
+.contact-email p{
+    margin: 0 0 var(--spacing-sm);
+}
+
+.contact-email p:last-child{
+    margin-bottom: 0;
+}
+/* =========================
+   Footer (basic)
+   ========================= */
+.footer {
+  background: var(--white);
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+  padding: 30px 0;
+  text-align:center;
+}
+.footer .row{
+    width:100%;
+    margin:1% 0%;
+    padding:0.6% 0%;
+    color:gray;
+    font-size:0.8em;
+}
+.footer .row a{
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+}
+.footer .row ul{
+    width: 100%;
+}
+
+.footer .row ul li{
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.footer .row a i{
+    font-size: 2em;
+    margin:0% 1%;
+}
+@media (max-width: 720px){
+    .footer {
+        text-align: left;
+        padding: 5%;
+    }
+    .footer .row ul li{
+        display: block;
+        margin: 10px 0px;
+        text-align: left;
+    }
+    .footer .row a i{
+        margin: 0% 3%;
+    }
+}
+
+/* =========================
+   Responsive (simple, effective)
+   ========================= */
+@media (max-width: 768px) {
+  header .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header .nav ul {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .main_title { font-size: 40px; line-height: 48px; }
+  main { padding: var(--spacing-xl) 0; }
+}
+
+/* =========================
+   Grid utilities
+   ========================= */
+.grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================
+   Hero layout
+   ========================= */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero__trust {
+  margin: 0;
+}
+
+.hero__media {
+  padding: var(--spacing-lg);
+}
+
+.hero__placeholder {
+  border-radius: 10px;
+  background: var(--neutral-100);
+  border: 1px dashed rgba(17, 24, 39, 0.18);
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  text-align: center;
+}
+
+/* =========================
+   Contact layout
+   ========================= */
+.contact-layout {
+  margin-top: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+  margin: var(--spacing-lg) 0;
+}
+
+/* =========================
+   Final CTA block
+   ========================= */
+.final-cta {
+  padding: var(--spacing-xl);
+}
+
+.final-cta__inner{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg)
+}
+
+.final-cta__inner p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.final-cta a.btn{
+    margin-top: var(--spacing-md);
+}
+
+
+/* =========================
+   Responsive tweaks
+   ========================= */
+@media (max-width: 900px) {
+  .hero,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Callout */
+.callout{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+.callout__icon{
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 185, 129, 0.12); /* accent tint */
+  font-size: 22px;
+}
+.callout p{ margin: 0; }
+
+/* About */
+.about-us__grid{
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+.about-us__conclusion{
+  color: var(--neutral-900);
+  font-weight: 600;
+}
+.about-us__media img{
+  border-radius: 10px;
+}
+
+/* Reuse divider from earlier */
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(17, 24, 39, 0.10);
+  margin: var(--spacing-lg) 0;
+}
+
+@media (max-width: 900px){
+  .callout{ grid-template-columns: 1fr; }
+  .about-us__grid{ grid-template-columns: 1fr; }
+}
