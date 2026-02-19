@@ -40,7 +40,11 @@
             </select>
 
             <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+            <textarea id="message" name="message" placeholder="Please describe the service you need. Include details like location, type of items, quantity, and any time constraints. The more details you provide, the more accurate our quote will be!"></textarea>
+
+            <label for="photos">Photos (optional):</label>
+            <input type="file" id="photos" name="photos" accept="image/*" multiple />
+            <p class="file-upload-note">Please provide any relevant photos to help us understand your needs.</p>
 
             <!-- These get filled by JS -->
             <input type="hidden" name="_subject" id="subjectField" />
