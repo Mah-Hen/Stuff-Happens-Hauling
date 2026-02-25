@@ -12,6 +12,8 @@
       name="keywords"
       content="contact junk removal Maryland, contact debris hauling Maryland, contact furniture removal Maryland"
     />
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   </head>
   <body>
     <div id="site-header"></div>
@@ -20,17 +22,15 @@
       <p class="small">Choose a topic and send us a message — we respond quickly.</p>
       <div class="contact-layout">
         <section class="card">
-          <form
-            id="contact-form"
-            action="https://formspree.io/f/mjgwndao"
-            method="POST"
-          >
+          <form id="contact-form">
             <h2>Contact Us</h2>
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" placeholder="Your email address" required />
+            <label for="phone">Phone (optional):</label>
+            <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" />
 
             <label> Topic:</label>
             <select name="topic" id="topic" required>
@@ -44,7 +44,7 @@
 
             <label for="photos">Photos (optional):</label>
             <input type="file" id="photos" name="photos" accept="image/*" multiple />
-            <p class="file-upload-note">Please provide any relevant photos to help us understand your needs.</p>
+            <p class="file-upload-note">Add photos to help us provide a more accurate quote (max 5 images, 10MB total)</p>
 
             <!-- These get filled by JS -->
             <input type="hidden" name="_subject" id="subjectField" />
@@ -76,6 +76,7 @@
     </main>
     <div id="site-footer"></div>
     <script src="js/header.js" defer></script>
+    <script src="js/emailjs-contact-imgbb.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/footer.js" defer></script>
   </body>
